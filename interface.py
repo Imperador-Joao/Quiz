@@ -1,10 +1,9 @@
 from tkinter import *
 from PIL import Image,ImageTk
 from threading import Timer
-from estrutura.funcoes_jogo import escolher_perguntas,gerar_alternativas,resposta_esta_certa
+from estrutura.funcoes_jogo import total_questoes,escolher_perguntas,gerar_alternativas,resposta_esta_certa
 
-
-TOTAL_QUESTOES = 16
+TOTAL_QUESTOES = total_questoes
 
 CAMINHO_LOGO = 'Fótons/Ícone.png'
 
@@ -234,9 +233,9 @@ def exibir_pontuacao():
     botao_resultado.bind('<Enter>',passar_mouse_botao)
     botao_resultado.bind('<Leave>',tirar_mouse_botao)
 
-    if pontuacao <= 5:
+    if pontuacao <= TOTAL_QUESTOES // 3:
          foto_resultado = Label(janela,image = foto_pontuacao_baixa_modificada,bg = COR_FUNDO)
-    elif pontuacao <= 10:
+    elif pontuacao <= 2*TOTAL_QUESTOES // 3:
          foto_resultado = Label(janela,image = foto_pontuacao_media_modificada,bg = COR_FUNDO)
     else:
          foto_resultado = Label(janela,image = foto_pontuacao_alta_modificada,bg = COR_FUNDO)
