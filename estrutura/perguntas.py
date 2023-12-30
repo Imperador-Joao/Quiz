@@ -1,5 +1,4 @@
-
-
+'''
 perguntas_respostas = {'Quem criou a linguagem Python?':'Guido Van Rossum',
              'Qual é o formato da Terra?':'Geóide',
              'Quem descobriu o Brasil?':'Já existiam povos aqui antes dos europeus',
@@ -50,4 +49,17 @@ alternativas_erradas = {'Quem criou a linguagem Python?':('MC Poze do Rodo','Gab
       'Somente usando combustíveis renováveis','Somente em combustão completa','Somente em combustão incompleta'),
       'Qual movimento literário serviu de inspiração para o sistema operacional Mimox?':('Romantismo','Modernismo','Futurismo',
       'Trovadorismo','Barroco','Arcadismo','Simbolismo','Naturalismo','Realismo')}
+'''
+import pandas as pd
 
+dados = pd.read_excel('estrutura/Base de dados.xlsx',index_col=0)
+
+perguntas = dados.index.values
+respostas = dados['Respostas'].values
+respostas_erradas_df = dados['Respostas Erradas'].values
+
+perguntas_respostas = {pergunta:resposta for pergunta,resposta in zip(perguntas,respostas)}
+alternativas_erradas = {pergunta:tuple(conjunto_respostas_erradas.split(';')) 
+                        for pergunta,conjunto_respostas_erradas in zip(perguntas,respostas_erradas_df)}
+
+total_questoes = len(perguntas_respostas)

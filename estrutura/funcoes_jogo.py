@@ -7,6 +7,7 @@ else:
     from estrutura.perguntas import *
 
 
+
 def escolher_perguntas(qtd_perguntas):
 
     perguntas_aleatorias = list(perguntas_respostas.keys())
